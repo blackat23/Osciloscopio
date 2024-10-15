@@ -11,7 +11,6 @@ time.sleep(2)  # Tiempo para que el Arduino inicie
 
 # Crear listas para almacenar tiempo y valores
 #prueba numero 3, ultima prueba de comentarios
-
 t_data = []
 pot_data = []
 start_time = time.time()
