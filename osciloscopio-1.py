@@ -8,7 +8,7 @@ import time
 # Conectar al puerto serial del Arduino (cambiar por el puerto correcto)
 ser = serial.Serial('COM7', 9600, timeout=1)
 time.sleep(2)  # Tiempo para que el Arduino inicie
-
+# pruebita bonita
 # Crear listas para almacenar tiempo y valores
 #prueba numero 3, ultima prueba de comentarios
 t_data = []
