@@ -15,5 +15,5 @@ void loop() {
   Serial.println(potPin);
 
   // Pausar un poco para no saturar el monitor serial
-  delay(100); // 500 ms de pausa
+  delay(50); // 500 ms de pausa
 }
