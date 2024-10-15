@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import serial
 import time
-
+#comentario de prueba
 # Conectar al puerto serial del Arduino (cambiar por el puerto correcto)
 ser = serial.Serial('COM7', 9600, timeout=1)
 time.sleep(2)  # Tiempo para que el Arduino inicie
