@@ -56,8 +56,8 @@ def update(frame):
             ax.relim()
             ax.autoscale_view()
 
-            if current_time > 10:
-                ax.set_xlim(current_time - 10, current_time)
+            if current_time > 0:
+                ax.set_xlim(current_time - 3, current_time)
 
     except Exception as e:
         print(f"Error: {e}")
