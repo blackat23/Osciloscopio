@@ -6,8 +6,8 @@ import serial
 import time
 
 # Conectar al puerto serial del Arduino (cambiar por el puerto correcto)
-ser = serial.Serial('COM5', 9600, timeout=1)
-time.sleep(2)  # Tiempo para que el Arduino inicie
+ser = serial.Serial('COM5', 115200, timeout=0.1)
+time.sleep(0.1)  # Tiempo para que el Arduino inicie
 t_data = []
 pot_data = []
 start_time = time.time()
@@ -18,19 +18,10 @@ current_index = 0  # Índice para movernos en la gráfica cuando está en pausa
 fig, ax = plt.subplots()
 line, = ax.plot([], [], color='green', lw=2)
 ax.set_xlim(0, 10)  # Eje X (tiempo) en segundos
-ax.set_ylim(0, 1023)  # Eje Y (valor del potenciómetro)
+ax.set_ylim(0, 500)  # Eje Y (valor del potenciómetro)
 ax.set_facecolor('#000000')
 ax.grid(True, which='both', color='white', linestyle='--')
 
-# Crear botones para pausar/reanudar, avanzar y retroceder en el tiempo
-pause_ax = plt.axes([0.7, 0.01, 0.1, 0.05])  # Eje para el botón de pausa
-pause_button = Button(pause_ax, 'Pausa', color='lightgray', hovercolor='gray')
-
-forward_ax = plt.axes([0.81, 0.01, 0.08, 0.05])  # Eje para el botón de avanzar
-forward_button = Button(forward_ax, 'Adelante', color='lightgray', hovercolor='gray')
-
-backward_ax = plt.axes([0.61, 0.01, 0.08, 0.05])  # Eje para el botón de retroceder
-backward_button = Button(backward_ax, 'Atrás', color='lightgray', hovercolor='gray')
 
 # Función que actualiza la gráfica
 def update(frame):
@@ -57,7 +48,7 @@ def update(frame):
             ax.autoscale_view()
 
             if current_time > 0:
-                ax.set_xlim(current_time - 3, current_time)
+                ax.set_xlim(current_time - 3, current_time) ## Cambiar cuanto avanza la pagina
 
     except Exception as e:
         print(f"Error: {e}")
@@ -90,6 +81,15 @@ def move_backward(event):
         ax.set_xlim(t_data[current_index] - 10, t_data[current_index])  # Actualizar la vista
         line.set_data(t_data[:current_index + 1], pot_data[:current_index + 1])
         fig.canvas.draw()
+# Crear botones para pausar/reanudar, avanzar y retroceder en el tiempo
+pause_ax = plt.axes([0.7, 0.01, 0.1, 0.05])  # Eje para el botón de pausa
+pause_button = Button(pause_ax, 'Pausa', color='lightgray', hovercolor='gray')
+
+forward_ax = plt.axes([0.81, 0.01, 0.08, 0.05])  # Eje para el botón de avanzar
+forward_button = Button(forward_ax, 'Adelante', color='lightgray', hovercolor='gray')
+
+backward_ax = plt.axes([0.61, 0.01, 0.08, 0.05])  # Eje para el botón de retroceder
+backward_button = Button(backward_ax, 'Atrás', color='lightgray', hovercolor='gray')
 
 # Conectar los botones con sus respectivas funciones
 pause_button.on_clicked(toggle_pause)
@@ -97,7 +97,7 @@ forward_button.on_clicked(move_forward)
 backward_button.on_clicked(move_backward)
 
 # Animar la gráfica
-ani = FuncAnimation(fig, update, interval=0.1)  # Actualiza cada 1ms
+ani = FuncAnimation(fig, update, interval = 0.0000001 )  # Actualiza cada 1ms
 
 # Etiquetas
 

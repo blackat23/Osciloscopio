@@ -3,7 +3,7 @@ int potPin = 0; // Pin analógico A0
 
 void setup() {
   // Iniciar la comunicación serial a 9600 bps
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {
@@ -15,5 +15,5 @@ void loop() {
   Serial.println(potPin);
 
   // Pausar un poco para no saturar el monitor serial
-  delay(50); // 500 ms de pausa
+  delay(20); // 500 ms de pausa
 }
